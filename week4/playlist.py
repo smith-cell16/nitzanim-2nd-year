@@ -40,12 +40,12 @@ liked_songs = {
         "artist": "charlie puth",
         "duration": (4, 25),
         "genre": "hiphop",
-    }
+    },
     "beleiver": {
-        "artist": "amagine dragons",
+        "artist": "imagine dragons",
         "duration": (3, 50),
         "genre": "pop",
-    }
+    },
     "hatikva": {
         "artist": "amami",
         "duration": (3, 15),
@@ -53,7 +53,7 @@ liked_songs = {
     }
 }
 def delete_song (my_dict):
-    song = input("what song would you to delete").lower()
+    song = input("what song would you to delete")
     if song in my_dict:
         my_dict.pop(song)
     elif song == "finish":
@@ -65,10 +65,12 @@ def delete_song (my_dict):
     return my_dict
 
 def search_song (my_dict):
-    song = input("what song would you to search for").lower()
+    song = input("what song would you to search for?")
     if song in my_dict:
-        print("song exists")
-        my_dict = delete_song(my_dict)
+        delete_Q = input("this song exists, would you like to delete it?")
+        if delete_Q == "yes":
+            my_dict.pop(song)
+            print(f"{song} was deleted")
     elif song == "finish":
         print("here is  playlist: ", liked_songs)
     else:
@@ -78,24 +80,31 @@ def search_song (my_dict):
 
 
 def delete_artist (my_dict):
-    artist = input("what artist would you to delete").lower()
-    for song in my_dict:
-
-        if my_dict[song]["artist"]== artist:
+    artist = input("what artist would you to delete")
+    for song in list(my_dict.keys()):
+        if my_dict[song]["artist"] == artist:
             my_dict.pop(song)
 
-    else:
-        print("artist does not exist")
     return my_dict
 
 
 def main():
     my_dict = search_song(liked_songs)
-    my_dict = delete_song(my_dict)
+    my_dict = delete_artist(my_dict)
     print(my_dict)
 
+    # action = input("what do want to do? search song, search artist, end, print liked songs").lower()
+    # if action == "search song":
+    #     search_song(liked_songs)
+    # elif action == "search artist":
+    #     delete_artist(my_dict)
 
 
-    chice = input("what would you like to do?: add song, search song, delete song")
+main()
+
+
+
+
+
 
 
